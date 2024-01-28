@@ -23,6 +23,8 @@ class HomeScreen extends ConsumerWidget {
             TextField(
               style: const TextStyle(color: Colors.black),
               cursorColor: Colors.white,
+              autocorrect: false,
+              enableSuggestions: false,
               decoration: InputDecoration(
                 hintText: 'Search user nickname...',
                 hintStyle: const TextStyle(color: Colors.grey),
