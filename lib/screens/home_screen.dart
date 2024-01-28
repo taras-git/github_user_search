@@ -39,6 +39,9 @@ class HomeScreen extends ConsumerWidget {
               onChanged: (value) {
                 userSearchFieldController.text = value;
               },
+              onSubmitted: (value) {
+                ref.read(searchQueryProvider.notifier).state = value;
+              },
             ),
           ],
         ),
