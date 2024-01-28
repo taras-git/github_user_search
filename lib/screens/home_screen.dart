@@ -54,10 +54,16 @@ class HomeScreen extends ConsumerWidget {
                 (user) => Column(
                   children: [
                     InkWell(
-                      child: ListTile(
-                        title: Text(user.login ?? "No Username..."),
-                        trailing: CircleAvatar(
-                          backgroundImage: NetworkImage(user.avatarUrl ?? ""),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Card(
+                          child: ListTile(
+                            title: Text(user.login ?? "No Username..."),
+                            trailing: CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage(user.avatarUrl ?? ""),
+                            ),
+                          ),
                         ),
                       ),
                       onTap: () => Navigator.of(context).push(
