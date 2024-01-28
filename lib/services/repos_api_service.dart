@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_user_search/model/repos_model/repo.dart';
 import 'package:github_user_search/model/user_moder/user_response.dart';
@@ -21,6 +22,8 @@ class ReposApiService {
       Uri.parse(searchQuery),
       headers: requestHeaders,
     );
+
+    debugPrint("RESPONSE BODY : ${response.body}");
 
     if (response.statusCode == 200) {
       final List<Repo> reposList = jsonDecode(response.body);

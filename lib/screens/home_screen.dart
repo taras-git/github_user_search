@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_user_search/model/repos_model/repo.dart';
 import 'package:github_user_search/model/user_moder/user.dart';
 import 'package:github_user_search/providers/data_provider.dart';
 import 'package:github_user_search/screens/user_details_screen.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<List<User>> users = ref.watch(usersListProvider);
+    AsyncValue<List<Repo>> repos = ref.watch(reposListProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -56,26 +58,33 @@ class HomeScreen extends ConsumerWidget {
                 (user) => Column(
                   children: [
                     InkWell(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Card(
-                          child: ListTile(
-                            title: Text(user.login ?? "No Username..."),
-                            trailing: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(user.avatarUrl ?? ""),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Card(
+                            child: ListTile(
+                              title: Text(user.login ?? "No Username..."),
+                              trailing: CircleAvatar(
+                                backgroundImage:
+                                    NetworkImage(user.avatarUrl ?? ""),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => UserDetailsScreen(
-                            userDetails: user,
-                          ),
-                        ),
-                      ),
-                    ),
+                        onTap: () {
+                          ref.read(reposSearchQueryProvider.notifier).state =
+                              user.login!;
+                          debugPrint(
+                              '>>>> Home : ${ref.read(reposSearchQueryProvider.notifier).state}');
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => UserDetailsScreen(
+                                userDetails: user,
+                                repos: [],
+                              ),
+                            ),
+                          );
+                        }),
                   ],
                 ),
               ),
