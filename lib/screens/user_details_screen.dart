@@ -5,9 +5,9 @@ class UserDetailsScreen extends StatelessWidget {
   final User userDetails;
 
   const UserDetailsScreen({
-    Key? key,
+    super.key,
     required this.userDetails,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -5,12 +5,12 @@ import 'package:github_user_search/providers/data_provider.dart';
 import 'package:github_user_search/screens/user_details_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({super.key});
 
   final controller = TextEditingController();
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<List<User>> users = ref.watch(usersListProvider);
 
     return Scaffold(

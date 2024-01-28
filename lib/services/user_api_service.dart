@@ -12,18 +12,18 @@ class UserApiService {
   Future<List<User>> getUsers({
     required String searchQuery,
   }) async {
-    Map<String, String> requestHeaders = {
+    final requestHeaders = {
       'Accept': 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28'
     };
 
-    Response response = await get(
+    final response = await get(
       Uri.parse(searchQuery),
       headers: requestHeaders,
     );
 
     if (response.statusCode == 200) {
-      final List<User>? items = UserResponse.fromJson(
+      final items = UserResponse.fromJson(
         jsonDecode(response.body),
       ).users;
 
