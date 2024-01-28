@@ -7,7 +7,7 @@ import 'package:github_user_search/screens/user_details_screen.dart';
 class HomeScreen extends ConsumerWidget {
   HomeScreen({super.key});
 
-  final controller = TextEditingController();
+  final userSearchFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,22 +15,29 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: 120,
         title: Column(
           children: [
             const Text("Github User"),
+            const SizedBox(height: 10),
             TextField(
               style: const TextStyle(color: Colors.black),
               cursorColor: Colors.white,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Search user nickname...',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
+                hintStyle: const TextStyle(color: Colors.grey),
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    ref.read(searchQueryProvider.notifier).state =
+                        userSearchFieldController.text;
+                  },
+                  icon: const Icon(Icons.search),
+                ),
               ),
-              controller: controller,
+              controller: userSearchFieldController,
               onChanged: (value) {
-                ref.read(searchQueryProvider.notifier).state = value;
-                users = ref.watch(usersListProvider);
+                userSearchFieldController.text = value;
               },
             ),
           ],
