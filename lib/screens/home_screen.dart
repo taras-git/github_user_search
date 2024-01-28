@@ -31,7 +31,7 @@ class HomeScreen extends ConsumerWidget {
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
                   onPressed: () {
-                    ref.read(searchQueryProvider.notifier).state =
+                    ref.read(userSearchQueryProvider.notifier).state =
                         userSearchFieldController.text;
                   },
                   icon: const Icon(Icons.search),
@@ -42,7 +42,7 @@ class HomeScreen extends ConsumerWidget {
                 userSearchFieldController.text = value;
               },
               onSubmitted: (value) {
-                ref.read(searchQueryProvider.notifier).state = value;
+                ref.read(userSearchQueryProvider.notifier).state = value;
               },
             ),
           ],
