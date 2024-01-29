@@ -895,10 +895,7 @@ class __$$RepoImplCopyWithImpl<$Res>
           ? _value.htmlUrl
           : htmlUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      description: freezed == description ? _value.description! : description,
       fork: freezed == fork
           ? _value.fork
           : fork // ignore: cast_nullable_to_non_nullable
@@ -1079,10 +1076,7 @@ class __$$RepoImplCopyWithImpl<$Res>
           ? _value.svnUrl
           : svnUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      homepage: freezed == homepage
-          ? _value.homepage
-          : homepage // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      homepage: freezed == homepage ? _value.homepage! : homepage,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -1127,10 +1121,7 @@ class __$$RepoImplCopyWithImpl<$Res>
           ? _value.forksCount
           : forksCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      mirrorUrl: freezed == mirrorUrl
-          ? _value.mirrorUrl
-          : mirrorUrl // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      mirrorUrl: freezed == mirrorUrl ? _value.mirrorUrl! : mirrorUrl,
       archived: freezed == archived
           ? _value.archived
           : archived // ignore: cast_nullable_to_non_nullable
@@ -1143,10 +1134,7 @@ class __$$RepoImplCopyWithImpl<$Res>
           ? _value.openIssuesCount
           : openIssuesCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      license: freezed == license
-          ? _value.license
-          : license // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      license: freezed == license ? _value.license! : license,
       allowForking: freezed == allowForking
           ? _value.allowForking
           : allowForking // ignore: cast_nullable_to_non_nullable
