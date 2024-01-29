@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:github_user_search/model/repos_model/repo.dart';
-import 'package:github_user_search/model/user_moder/user.dart';
 import 'package:github_user_search/providers/data_provider.dart';
 import 'package:github_user_search/screens/user_details_screen.dart';
 
@@ -27,7 +25,7 @@ class HomeScreen extends ConsumerWidget {
               autocorrect: false,
               enableSuggestions: false,
               decoration: InputDecoration(
-                hintText: 'Search user nickname...',
+                hintText: 'Search user name:',
                 hintStyle: const TextStyle(color: Colors.grey),
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
