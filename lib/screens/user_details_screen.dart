@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_user_search/model/repos_model/repo.dart';
 import 'package:github_user_search/model/user_moder/user.dart';
 import 'package:github_user_search/providers/data_provider.dart';
 
@@ -20,7 +21,7 @@ class UserDetailsScreen extends ConsumerWidget {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Center(
               child: CircleAvatar(
                 maxRadius: 100,
@@ -28,7 +29,7 @@ class UserDetailsScreen extends ConsumerWidget {
                     NetworkImage(userDetails.avatarUrl ?? "Image error..."),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Text(
               "User Name :  ${userDetails.login}",
             ),
@@ -36,6 +37,7 @@ class UserDetailsScreen extends ConsumerWidget {
             Text(
               "ID : ${userDetails.id}",
             ),
+            const SizedBox(height: 10),
             const Divider(),
             Expanded(
               child: repos.when(
@@ -44,22 +46,7 @@ class UserDetailsScreen extends ConsumerWidget {
                     shrinkWrap: true,
                     children: [
                       ...data.map(
-                        (repo) => Card(
-                          child: Column(
-                            children: [
-                              Text("name: ${repo.name}"),
-                              if (repo.description != null)
-                                Text("description: ${repo.description}")
-                              else
-                                Container(),
-                              Text("language: ${repo.language}"),
-                              if (repo.license != null)
-                                Text("license: ${repo.license['name']}")
-                              else
-                                Container(),
-                            ],
-                          ),
-                        ),
+                        (repo) => UserCard(repo: repo),
                       ),
                     ],
                   );
@@ -73,6 +60,38 @@ class UserDetailsScreen extends ConsumerWidget {
                 ),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UserCard extends StatelessWidget {
+  final Repo repo;
+  const UserCard({
+    super.key,
+    required this.repo,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("name: ${repo.name}"),
+            if (repo.description != null)
+              Text("description: ${repo.description}")
+            else
+              Container(),
+            Text("language: ${repo.language}"),
+            if (repo.license != null)
+              Text("license: ${repo.license['name']}")
+            else
+              Container(),
           ],
         ),
       ),
