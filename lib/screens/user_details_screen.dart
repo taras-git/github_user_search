@@ -33,10 +33,6 @@ class UserDetailsScreen extends ConsumerWidget {
             Text(
               "User Name :  ${userDetails.login}",
             ),
-            Text("User Type : ${userDetails.type}"),
-            Text(
-              "ID : ${userDetails.id}",
-            ),
             const SizedBox(height: 10),
             const Divider(),
             Expanded(
@@ -81,7 +77,7 @@ class UserCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
         child: Column(
           children: [
-            RepoDetailEntry(title: "name : ", details: repo.name),
+            RepoDetailEntry(title: "repo name : ", details: repo.name),
             RepoDetailEntry(title: "description : ", details: repo.description),
             RepoDetailEntry(title: "language : ", details: repo.language),
             RepoDetailEntry(
