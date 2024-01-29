@@ -21,7 +21,7 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: 10),
             TextField(
               style: const TextStyle(color: Colors.black),
-              cursorColor: Colors.white,
+              cursorColor: Colors.black45,
               autocorrect: false,
               enableSuggestions: false,
               decoration: InputDecoration(

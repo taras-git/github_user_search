@@ -13,7 +13,7 @@ class ReposApiService {
   Future<List<Repo>> getRepos({
     required String endpoint,
   }) async {
-    debugPrint(">>> ReposApiService searchQuery : $endpoint");
+    debugPrint(">>> ReposApiService : $endpoint");
 
     final response = await get(
       Uri.parse(endpoint),

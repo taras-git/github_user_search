@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_user_search/model/user_moder/user.dart';
 import 'package:github_user_search/model/user_moder/user_response.dart';
@@ -13,6 +14,8 @@ class UserApiService {
   Future<List<User>> getUsers({
     required String endpoint,
   }) async {
+    debugPrint(">>> UserApiService : $endpoint");
+
     final response = await get(
       Uri.parse(endpoint),
       headers: requestHeaders,

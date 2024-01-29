@@ -80,21 +80,54 @@ class UserCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("name: ${repo.name}"),
-            if (repo.description != null)
-              Text("description: ${repo.description}")
-            else
-              Container(),
-            Text("language: ${repo.language}"),
-            if (repo.license != null)
-              Text("license: ${repo.license['name']}")
-            else
-              Container(),
+            RepoDetailEntry(title: "name : ", details: repo.name),
+            RepoDetailEntry(title: "description : ", details: repo.description),
+            RepoDetailEntry(title: "language : ", details: repo.language),
+            RepoDetailEntry(
+                title: "license : ", details: repo.license?['name']),
           ],
         ),
       ),
     );
+  }
+}
+
+class RepoDetailEntry extends StatelessWidget {
+  const RepoDetailEntry({
+    super.key,
+    required this.title,
+    required this.details,
+  });
+
+  final String title;
+  final String? details;
+
+  @override
+  Widget build(BuildContext context) {
+    if (details == null) {
+      return Container();
+    } else {
+      return Row(
+        children: [
+          Flexible(
+            child: Text.rich(
+              TextSpan(
+                style: DefaultTextStyle.of(context).style,
+                children: [
+                  TextSpan(
+                    text: title,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(
+                    text: details,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
+    }
   }
 }
