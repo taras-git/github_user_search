@@ -17,7 +17,7 @@ class HomeScreen extends ConsumerWidget {
         toolbarHeight: 120,
         title: Column(
           children: [
-            const Text("Github User"),
+            const Text("Github User Search"),
             const SizedBox(height: 10),
             TextField(
               style: const TextStyle(color: Colors.black),
@@ -25,7 +25,7 @@ class HomeScreen extends ConsumerWidget {
               autocorrect: false,
               enableSuggestions: false,
               decoration: InputDecoration(
-                hintText: 'Search user name:',
+                hintText: 'Enter user name:',
                 hintStyle: const TextStyle(color: Colors.grey),
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
@@ -59,7 +59,7 @@ class HomeScreen extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Card(
                             child: ListTile(
-                              title: Text(user.login ?? "No Username..."),
+                              title: Text("${user.login}"),
                               trailing: const Icon(Icons.arrow_forward_ios),
                             ),
                           ),
@@ -82,12 +82,14 @@ class HomeScreen extends ConsumerWidget {
             ],
           );
         },
+        //
         error: (error, s) => const Column(
           children: [
-            Center(child: Text("No users found")),
-            Text("please enter user name to the Search field"),
+            Center(child: Text("No users found...")),
+            Text("Please enter user name in the Search field"),
           ],
         ),
+        //
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),

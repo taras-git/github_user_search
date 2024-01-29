@@ -7,6 +7,7 @@ import 'package:github_user_search/services/user_api_service.dart';
 String baseEndpoint = "https://api.github.com";
 
 /// Users
+///
 String usersEndpoint = "$baseEndpoint/search/users?q=";
 
 String userSearchQuery = "";
@@ -17,13 +18,13 @@ final userSearchQueryProvider = StateProvider<String>((ref) {
 final usersListProvider = FutureProvider<List<User>>(
   (ref) async {
     return ref.read(userApiServiceProvider).getUsers(
-          searchQuery: "$usersEndpoint${ref.watch(userSearchQueryProvider)}",
+          endpoint: "$usersEndpoint${ref.watch(userSearchQueryProvider)}",
         );
   },
 );
 
 /// User Repos
-///
+
 String reposEndpoint = "$baseEndpoint/users";
 
 String reposSearchQuery = "";
@@ -34,7 +35,7 @@ final reposSearchQueryProvider = StateProvider<String>((ref) {
 final reposListProvider = FutureProvider<List<Repo>>(
   (ref) async {
     return ref.read(reposApiServiceProvider).getRepos(
-          searchQuery:
+          endpoint:
               "$reposEndpoint/${ref.watch(reposSearchQueryProvider)}/repos",
         );
   },
