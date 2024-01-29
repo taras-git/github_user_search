@@ -18,15 +18,21 @@ class ReposApiService {
       'X-GitHub-Api-Version': '2022-11-28'
     };
 
+    debugPrint(">>> ReposApiService searchQuery : $searchQuery");
+
     final response = await get(
       Uri.parse(searchQuery),
       headers: requestHeaders,
     );
 
-    debugPrint("RESPONSE BODY : ${response.body}");
+    debugPrint(">>> ReposApiService response : ${response.body}");
 
     if (response.statusCode == 200) {
-      final List<Repo> reposList = jsonDecode(response.body);
+      final reposList = (jsonDecode(response.body) as List)
+          .map((e) => Repo.fromJson(e))
+          .toList();
+
+      debugPrint(">>> ReposApiService reposList : ${reposList.length}");
 
       if (reposList.isEmpty) {
         throw Exception(">>> result!= null && result.isEmpty");

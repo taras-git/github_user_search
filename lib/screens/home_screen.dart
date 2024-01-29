@@ -12,8 +12,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<User>> users = ref.watch(usersListProvider);
-    AsyncValue<List<Repo>> repos = ref.watch(reposListProvider);
+    final users = ref.watch(usersListProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -63,24 +62,18 @@ class HomeScreen extends ConsumerWidget {
                           child: Card(
                             child: ListTile(
                               title: Text(user.login ?? "No Username..."),
-                              trailing: CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage(user.avatarUrl ?? ""),
-                              ),
+                              trailing: const Icon(Icons.arrow_forward_ios),
                             ),
                           ),
                         ),
                         onTap: () {
                           ref.read(reposSearchQueryProvider.notifier).state =
                               user.login!;
-                          debugPrint(
-                              '>>>> Home : ${ref.read(reposSearchQueryProvider.notifier).state}');
 
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => UserDetailsScreen(
                                 userDetails: user,
-                                repos: [],
                               ),
                             ),
                           );
